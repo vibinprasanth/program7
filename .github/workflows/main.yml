@@ -1,0 +1,25 @@
+name: Firewall Zones Autograding
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  autograding:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout student repository
+        uses: actions/checkout@v4
+
+      - name: Make scripts executable
+        run: |
+          chmod +x firewall_zones.sh
+          chmod +x test_cases/test_firewall_zones.sh
+          chmod +x autograding/run_tests.sh
+
+      - name: Run Autograding
+        run: |
+          ./autograding/run_tests.sh
